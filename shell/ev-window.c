@@ -46,6 +46,7 @@
 #include "ev-find-sidebar.h"
 #include "ev-annotations-toolbar.h"
 #include "ev-application.h"
+#include "ev-sidebar-ai.h"
 #include "ev-document-factory.h"
 #include "ev-document-find.h"
 #include "ev-document-fonts.h"
@@ -153,6 +154,7 @@ typedef struct {
 	GtkWidget *sidebar_layers;
 	GtkWidget *sidebar_annots;
 	GtkWidget *sidebar_bookmarks;
+	GtkWidget *sidebar_ai;
 	GtkWidget *annots_toolbar;
 
 	/* Settings */
@@ -273,6 +275,7 @@ typedef struct {
 #define LAYERS_SIDEBAR_ID "layers"
 #define ANNOTS_SIDEBAR_ID "annotations"
 #define BOOKMARKS_SIDEBAR_ID "bookmarks"
+#define AI_SIDEBAR_ID "ai-summary"
 #define LINKS_SIDEBAR_ICON EV_STOCK_OUTLINE
 #define THUMBNAILS_SIDEBAR_ICON "view-grid-symbolic"
 #define ATTACHMENTS_SIDEBAR_ICON "mail-attachment-symbolic"
@@ -1150,6 +1153,8 @@ ev_window_sidebar_get_current_page_id (EvWindow *ev_window)
 		id = ANNOTS_SIDEBAR_ID;
 	} else if (current_page == priv->sidebar_bookmarks) {
 		id = BOOKMARKS_SIDEBAR_ID;
+	} else if (current_page == priv->sidebar_ai) {
+		id = AI_SIDEBAR_ID;
 	} else {
 		g_assert_not_reached();
 	}
@@ -7747,6 +7752,16 @@ ev_window_init (EvWindow *ev_window)
 			      sidebar_widget,
 			      ATTACHMENTS_SIDEBAR_ID, _("Attachments"),
 			      ATTACHMENTS_SIDEBAR_ICON);
+
+
+	sidebar_widget = ev_sidebar_ai_new ();
+	priv->sidebar_ai = sidebar_widget;
+	gtk_widget_show (sidebar_widget);
+	ev_sidebar_add_page (EV_SIDEBAR (priv->sidebar),
+                     sidebar_widget,
+                     AI_SIDEBAR_ID,
+                     _("AI Summary"),
+                     "preferences-system-symbolic");
 
 	sidebar_widget = ev_sidebar_layers_new ();
 	priv->sidebar_layers = sidebar_widget;
