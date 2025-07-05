@@ -24,6 +24,7 @@ evince_sources = files(
   'ev-sidebar-attachments.c',
   'ev-sidebar-bookmarks.c',
   'ev-sidebar.c',
+  'ev-sidebar-ai.c',
   'ev-sidebar-layers.c',
   'ev-sidebar-links.c',
   'ev-sidebar-page.c',
