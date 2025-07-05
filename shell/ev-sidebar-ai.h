@@ -9,18 +9,21 @@ G_BEGIN_DECLS
 #define EV_TYPE_SIDEBAR_AI (ev_sidebar_ai_get_type())
 G_DECLARE_FINAL_TYPE(EvSidebarAI, ev_sidebar_ai, EV, SIDEBAR_AI, GtkBox)
 
-struct _EvSidebarAI {
-  GtkBox parent_instance;
+struct _EvSidebarAI
+{
+    GtkBox parent_instance;
 
-  GtkWidget *summary_view;
-  GtkWidget *question_entry;
-  GtkWidget *ask_button;
+    GtkWidget *page_list;
+    GtkWidget *model_combo;
+    GtkWidget *ask_button;
+    GtkWidget *output_view;
 
-  EvDocumentModel *model;
+    EvDocumentModel *model;
 };
 
-struct _EvSidebarAIClass {
-  GtkBoxClass parent_class;
+struct _EvSidebarAIClass
+{
+    GtkBoxClass parent_class;
 };
 
 GtkWidget *ev_sidebar_ai_new(void);
