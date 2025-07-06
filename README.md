@@ -47,3 +47,9 @@ git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
 [license]: COPYING
 [evince-logo]: data/icons/scalable/apps/org.gnome.Evince.svg
 [flatpak]: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Flathub-badge-en.svg/240px-Flathub-badge-en.svg.png
+
+
+# Build and test new features
+```
+meson setup --wipe _build --prefix=/usr && meson compile -C _build && ./_build/shell/evince
+```
